@@ -21,7 +21,7 @@ pipeline {
                 withSonarQubeEnv('sonar') {
                     script {
                         def scannerHome = tool 'sonar'
-                        bat "\"${scannerHome}\\sonar-scanner.bat\" -Dsonar.projectKey=logowanie -Dsonar.sources=src -Dsonar.java.binaries=target/classes"
+                        bat "\"C:\Users\Kuba\Desktop\STUDIA\sonar-scanner-5.0.1.3006-windows\bin" -Dsonar.projectKey=logowanie -Dsonar.sources=src -Dsonar.java.binaries=target/classes"
                     }
                 }
             }
