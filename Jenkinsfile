@@ -1,14 +1,8 @@
 pipeline {
     agent any
-
     tools {
         maven 'Maven_3.8.1'
     }
-
-    environment {
-        SONAR_TOKEN = credentials('sonar') // ID tokena z Jenkins Credentials
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -25,13 +19,10 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar') {
-                    bat '''
-                        sonar-scanner ^
-                        -Dsonar.projectKey=logowanie ^
-                        -Dsonar.sources=src ^
-                        -Dsonar.java.binaries=target/classes ^
-                        -Dsonar.login=%SONAR_TOKEN%
-                    '''
+                    script {
+                        def scannerHome = tool 'manual-sonar'
+                        bat "\"${scannerHome}\\sonar-scanner.bat\" -Dsonar.projectKey=logowanie -Dsonar.sources=src -Dsonar.java.binaries=target/classes"
+                    }
                 }
             }
         }
@@ -42,9 +33,9 @@ pipeline {
             }
         }
 
-        stage('Quality Gate') {
+        stage("Quality Gate") {
             steps {
-                timeout(time: 1, unit: 'MINUTES') {
+                timeout(time: 2, unit: 'MINUTES') {
                     waitForQualityGate abortPipeline: true
                 }
             }
