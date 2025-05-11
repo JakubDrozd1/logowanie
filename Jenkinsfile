@@ -3,11 +3,10 @@ pipeline {
 
     tools {
         maven 'Maven_3.8.1'
-        sonarQubeScanner 'sonar' // Ustaw zgodnie z nazwą z Global Tool Configuration
     }
 
     environment {
-        SONAR_TOKEN = credentials('sonarqube-token') // ID tokena z Jenkins Credentials
+        SONAR_TOKEN = credentials('sonar') // ID tokena z Jenkins Credentials
     }
 
     stages {
