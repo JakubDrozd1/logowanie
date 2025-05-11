@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         maven 'Maven_3.8.1'
-        sonarQubeScanner 'SonarScanner' // Ustaw zgodnie z nazwą z Global Tool Configuration
+        sonarQubeScanner 'sonar' // Ustaw zgodnie z nazwą z Global Tool Configuration
     }
 
     environment {
