@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/RafHon/logowanie.git'
+                git 'https://github.com/JakubDrozd1/logowanie.git'
             }
         }
 
