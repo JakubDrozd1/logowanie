@@ -20,7 +20,7 @@ pipeline {
             steps {
                 withSonarQubeEnv('sonar') {
                     script {
-                        def scannerHome = tool 'manual-sonar'
+                        def scannerHome = tool 'sonar'
                         bat "\"${scannerHome}\\sonar-scanner.bat\" -Dsonar.projectKey=logowanie -Dsonar.sources=src -Dsonar.java.binaries=target/classes"
                     }
                 }
